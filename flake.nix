@@ -16,6 +16,7 @@
     host = "P52";
     profile = "nvidia-laptop";
     username = "zell";
+    host1 = "P16";
   in {
     nixosConfigurations = {
       amd = nixpkgs.lib.nixosSystem {
@@ -24,6 +25,7 @@
           inherit inputs;
           inherit username;
           inherit host;
+          inherit host1;
           inherit profile;
         };
         modules = [./profiles/amd];
@@ -34,6 +36,7 @@
           inherit inputs;
           inherit username;
           inherit host;
+          inherit host1;
           inherit profile;
         };
         modules = [./profiles/nvidia];
@@ -44,6 +47,7 @@
           inherit inputs;
           inherit username;
           inherit host;
+          inherit host1;
           inherit profile;
         };
         modules = [./profiles/nvidia-laptop];
@@ -54,6 +58,7 @@
           inherit inputs;
           inherit username;
           inherit host;
+          inherit host1;
           inherit profile;
         };
         modules = [./profiles/intel];
@@ -64,6 +69,7 @@
           inherit inputs;
           inherit username;
           inherit host;
+          inherit host1;
           inherit profile;
         };
         modules = [./profiles/vm];
