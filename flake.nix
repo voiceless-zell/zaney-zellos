@@ -13,7 +13,7 @@
 
   outputs = {nixpkgs, ...} @ inputs: let
     system = "x86_64-linux";
-    host = "P52";
+    host = "P16";
     profile = "nvidia-laptop";
     username = "zell";
   in {
