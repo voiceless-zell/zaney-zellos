@@ -1,11 +1,11 @@
 {
   # Git Configuration ( For Pulling Software Repos )
-  gitUsername = "Tyler Kelley";
-  gitEmail = "tylerzanekelley@gmail.com";
+  gitUsername = "voiceless-zell";
+  gitEmail = "peter.bouchard2893@proton.me";
 
   # Hyprland Settings
   extraMonitorSettings = "
-  monitor = eDP-1,2560x1600,0x0,1
+    eDP-1,2560x1600,0x0,1
     ";
 
   # Waybar Settings

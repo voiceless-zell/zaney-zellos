@@ -50,28 +50,28 @@ fi
 echo "-----"
 
 backupname=$(date "+%Y-%m-%d-%H-%M-%S")
-if [ -d "zaneyos" ]; then
-  echo "ZaneyOS exists, backing up to .config/zaneyos-backups folder."
-  if [ -d ".config/zaneyos-backups" ]; then
+if [ -d "zaney-zellos" ]; then
+  echo "Zaney-zellos exists, backing up to .config/zaney-zellos-backups folder."
+  if [ -d ".config/zaney-zellos-backups" ]; then
     echo "Moving current version of ZaneyOS to backups folder."
-    mv "$HOME"/zaneyos .config/zaneyos-backups/"$backupname"
+    mv "$HOME"/zaneyos .config/zaney-zellos-backups/"$backupname"
     sleep 1
   else
-    echo "Creating the backups folder & moving ZaneyOS to it."
-    mkdir -p .config/zaneyos-backups
-    mv "$HOME"/zaneyos .config/zaneyos-backups/"$backupname"
+    echo "Creating the backups folder & moving Zaney-zellos to it."
+    mkdir -p .config/zaney-zellos-backups
+    mv "$HOME"/zaney-zellos .config/zaney-zellos-backups/"$backupname"
     sleep 1
   fi
 else
-  echo "Thank you for choosing ZaneyOS."
+  echo "Thank you for choosing Zaney-zellos."
   echo "I hope you find your time here enjoyable!"
 fi
 
 echo "-----"
 
-echo "Cloning & Entering ZaneyOS Repository"
-git clone https://gitlab.com/zaney/zaneyos.git
-cd zaneyos || exit
+echo "Cloning & Entering Zaney-zellos Repository"
+git clone https://github.com/voiceless-zell/zaney-zellos.git
+cd zaney-zellos || exit
 mkdir hosts/"$hostName"
 cp hosts/default/*.nix hosts/"$hostName"
 installusername=$(echo $USER)
@@ -116,4 +116,4 @@ NIX_CONFIG="experimental-features = nix-command flakes"
 
 echo "-----"
 
-sudo nixos-rebuild switch --flake ~/zaneyos/#${profile}
+sudo nixos-rebuild switch --flake ~/zaney-zellos/#${profile}
