@@ -13,6 +13,23 @@
       viAlias = true;
       withNodeJs = true;
 
+      notes = {
+        obsidian = {
+          enable = true;
+          setupOpts = {
+            workspaces = [
+              {
+                name = "Mastervault";
+                path = "~/Mastervault/";
+              }
+            ];
+            daily_notes = {
+              folder = "Dailies";
+            };
+          };
+        };
+      };
+
       options = {
         tabstop = 2;
         shiftwidth = 2;

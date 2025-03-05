@@ -4,5 +4,6 @@
     discord
     nodejs
     obs-studio
+    obsidian
   ];
 }
