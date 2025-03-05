@@ -98,7 +98,7 @@ nix-shell -p git curl
 Then:
 
 ```
-sh <(curl -L https://gitlab.com/Zaney/zaneyos/-/raw/main/install-zaneyos.sh)
+sh <(curl -L https://raw.githubusercontent.com/voiceless-zell/zaney-zellos/refs/heads/master/install-zaneyos.sh)
 ```
 
 #### 🦽 Manual:
