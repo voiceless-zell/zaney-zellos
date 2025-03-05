@@ -54,7 +54,7 @@ if [ -d "zaney-zellos" ]; then
   echo "Zaney-zellos exists, backing up to .config/zaney-zellos-backups folder."
   if [ -d ".config/zaney-zellos-backups" ]; then
     echo "Moving current version of ZaneyOS to backups folder."
-    mv "$HOME"/zaneyos .config/zaney-zellos-backups/"$backupname"
+    mv "$HOME"/zaney-zellos .config/zaney-zellos-backups/"$backupname"
     sleep 1
   else
     echo "Creating the backups folder & moving Zaney-zellos to it."
