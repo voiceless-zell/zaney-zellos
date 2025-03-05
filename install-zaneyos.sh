@@ -33,6 +33,13 @@ if [ -z "$hostName" ]; then
   hostName="default"
 fi
 
+# Check if the hostname exists in flake.nix
+if grep -q "\"$hostName\"" ./flake.nix; then
+  echo "Error: Hostname $hostName already exists. Please choose a new name."
+  exit 1
+fi
+
+echo "Using hostname: $hostName"
 echo "-----"
 
 read -rp "Enter Your Hardware Profile (GPU)
@@ -72,7 +79,16 @@ echo "-----"
 echo "Cloning & Entering Zaney-zellos Repository"
 git clone https://github.com/voiceless-zell/zaney-zellos.git
 cd zaney-zellos || exit
-mkdir hosts/"$hostName"
+
+# Check if the host folder exists and overwrite if it does
+if [ -d "hosts/$hostName" ]; then
+  echo "Host folder for $hostName exists. Overwriting contents..."
+  rm -rf "hosts/$hostName"/*
+else
+  echo "Creating host folder for $hostName."
+  mkdir -p "hosts/$hostName"
+fi
+
 cp hosts/default/*.nix hosts/"$hostName"
 installusername=$(echo $USER)
 git config --global user.name "$installusername"
@@ -82,7 +98,6 @@ git config --global --unset-all user.name
 git config --global --unset-all user.email
 sed -i "/^\s*host[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$hostName\"/" ./flake.nix
 sed -i "/^\s*profile[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$profile\"/" ./flake.nix
-
 
 read -rp "Enter your keyboard layout: [ us ] " keyboardLayout
 if [ -z "$keyboardLayout" ]; then
