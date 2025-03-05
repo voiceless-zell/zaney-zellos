@@ -35,33 +35,12 @@ fi
 
 echo "-----"
 
-read -rp "Enter Your Hardware Profile (GPU)
-Options:
-[ amd ]
-nvidia
-nvidia-laptop
-intel
-vm
-Please type out your choice: " profile
-if [ -z "$profile" ]; then
-  profile="amd"
-fi
-
-echo "-----"
-
 backupname=$(date "+%Y-%m-%d-%H-%M-%S")
 if [ -d "zaney-zellos" ]; then
   echo "Zaney-zellos exists, backing up to .config/zaney-zellos-backups folder."
-  if [ -d ".config/zaney-zellos-backups" ]; then
-    echo "Moving current version of ZaneyOS to backups folder."
-    mv "$HOME"/zaneyos .config/zaney-zellos-backups/"$backupname"
-    sleep 1
-  else
-    echo "Creating the backups folder & moving Zaney-zellos to it."
-    mkdir -p .config/zaney-zellos-backups
-    mv "$HOME"/zaney-zellos .config/zaney-zellos-backups/"$backupname"
-    sleep 1
-  fi
+  mkdir -p .config/zaney-zellos-backups
+  mv "$HOME"/zaney-zellos .config/zaney-zellos-backups/"$backupname"
+  sleep 1
 else
   echo "Thank you for choosing Zaney-zellos."
   echo "I hope you find your time here enjoyable!"
@@ -72,7 +51,7 @@ echo "-----"
 echo "Cloning & Entering Zaney-zellos Repository"
 git clone https://github.com/voiceless-zell/zaney-zellos.git
 cd zaney-zellos || exit
-mkdir hosts/"$hostName"
+mkdir -p hosts/"$hostName"
 cp hosts/default/*.nix hosts/"$hostName"
 installusername=$(echo $USER)
 git config --global user.name "$installusername"
@@ -80,29 +59,11 @@ git config --global user.email "$installusername@gmail.com"
 git add .
 git config --global --unset-all user.name
 git config --global --unset-all user.email
-sed -i "/^\s*host[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$hostName\"/" ./flake.nix
-sed -i "/^\s*profile[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$profile\"/" ./flake.nix
 
-
-read -rp "Enter your keyboard layout: [ us ] " keyboardLayout
-if [ -z "$keyboardLayout" ]; then
-  keyboardLayout="us"
+# Modify flake.nix to append the new hostname instead of replacing it
+if ! grep -q "host = \"$hostName\"" flake.nix; then
+  sed -i "/^\s*host[[:space:]]*=/a \    \"$hostName\"" flake.nix
 fi
-
-sed -i "/^\s*keyboardLayout[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$keyboardLayout\"/" ./hosts/$hostName/variables.nix
-
-echo "-----"
-
-read -rp "Enter your console keymap: [ us ] " consoleKeyMap
-if [ -z "$consoleKeyMap" ]; then
-  consoleKeyMap="us"
-fi
-
-sed -i "/^\s*consoleKeyMap[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$consoleKeyMap\"/" ./hosts/$hostName/variables.nix
-
-echo "-----"
-
-sed -i "/^\s*username[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$installusername\"/" ./flake.nix
 
 echo "-----"
 
@@ -116,4 +77,5 @@ NIX_CONFIG="experimental-features = nix-command flakes"
 
 echo "-----"
 
-sudo nixos-rebuild switch --flake ~/zaney-zellos/#${profile}
+sudo nixos-rebuild switch --flake ~/zaney-zellos/#$hostName
+`
