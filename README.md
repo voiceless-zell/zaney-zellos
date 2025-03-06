@@ -1,5 +1,25 @@
 <div align="center">
 
+    # My twist on zaneyos
+
+        This is a fork from zaneyOS here: https://gitlab.com/Zaney/zaneyos
+
+    ## The Below documentation, only has slight modifications, from the original. I have updated the script to install the config from this repository.
+
+    ### TODO
+
+    - [ ] Add WSL config (no gui)
+    - [ ] add server config (limited software/ no GUI)
+    - [ ] add more fine grained notes
+    - [ ] declare Kali linux VM
+    - [ ] reconfig script to add additional unique hostname variable, for ease of use in multi host Configs
+    - [ ] reconfig script too add additioal unique username variables, for ease of use in multi user Configs
+
+
+    #### Changes as of 3-5-2025
+        - added shell alias of fl "cd ~/zaney-zellos/ && v" ( quick access to edit config)
+        - Multiple personel hosts added
+
 ## ZaneyOS 🟰 Best ❄️ NixOS Configs
 
 ZaneyOS is a simple way of reproducing my configuration on any NixOS system.
