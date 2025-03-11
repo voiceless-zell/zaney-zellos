@@ -1,9 +1,4 @@
-{
-  inputs,
-  ...
-}:
-
-{
+{inputs, ...}: {
   imports = [
     ./boot.nix
     ./fonts.nix
@@ -20,5 +15,6 @@
     ./virtualisation.nix
     ./xdg.nix
     inputs.stylix.nixosModules.stylix
+    inputs.nix-citizen.nixosModules.StarCitizen
   ];
 }
