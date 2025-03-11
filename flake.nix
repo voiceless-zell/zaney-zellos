@@ -9,8 +9,10 @@
     nixpkgs.url = "github:nixos/nixpkgs/release-24.11";
     nvf.url = "github:notashelf/nvf";
     stylix.url = "github:danth/stylix/release-24.11";
+    nix-citizen.url = "github:LovingMelody/nix-citizen";
+    nix-gaming.url = "github:fufexan/nix-gaming";
+    nix-citizen.inputs.nix-gaming.follows = "nix-gaming";
   };
-
 
   outputs = {nixpkgs, ...} @ inputs: let
     system = "x86_64-linux";
