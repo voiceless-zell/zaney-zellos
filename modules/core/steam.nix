@@ -8,6 +8,8 @@
       extraCompatPackages = [pkgs.proton-ge-bin];
     };
 
+    gamemode.enable = true;
+
     gamescope = {
       enable = true;
       capSysNice = true;
