@@ -5,6 +5,7 @@
 }: {
   environment.systemPackages = with pkgs; [
     audacity
+    nvtopPackages.full
     nmap
     discord
     nodejs
@@ -13,7 +14,6 @@
     inputs.nix-citizen.packages.${system}.star-citizen-helper
     inputs.nix-citizen.packages.${system}.lug-helper
     openra
-    transmission_4
     wine
   ];
   nixpkgs.config.permittedInsecurePackages = [
