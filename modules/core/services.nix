@@ -14,6 +14,7 @@ in {
     openssh.enable = true;
     flatpak.enable = true;
     blueman.enable = true;
+    hardware.bolt.enable = true;
 
     xserver = {
       enable = false;

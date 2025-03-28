@@ -5,10 +5,10 @@
 
   # Hyprland Settings
   extraMonitorSettings = "
-    monitor = eDP-1,2560x1600,0x0,1
-    monitor = DP-4,1920x1080,-1080x0,1,transform,3
-    monitor = HDMI-A-1,1920x1080,-3000x0,1
-    monitor = DP-3,1920x1080,-4920x0,1
+    monitor = eDP-1,2560x1600@165.02,0x0,1
+    monitor = DP-4,1920x1080@60,-1080x0,1,transform,3
+    monitor = HDMI-A-1,1920x1080@60,-3000x0,1
+    monitor = DP-3,1920x1080@60,-4920x0,1
     ";
 
   # Waybar Settings

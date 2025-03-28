@@ -13,24 +13,25 @@
       viAlias = true;
       withNodeJs = true;
 
-      #      notes = {
-      #        obsidian = {
-      #          enable = true;
-      #          setupOpts = {
-      #            workspaces = [
-      #              {
-      #                name = "Mastervault";
-      #                path = "~/Mastervault/";
-      #              }
-      #            ];
-      #            daily_notes = {
-      #              folder = "Dailies";
-      #            };
-      #          };
-      #        };
-      #      };
+      notes = {
+        obsidian = {
+          enable = true;
+          setupOpts = {
+            workspaces = [
+              {
+                name = "vimvault";
+                path = "~/vimvault/";
+              }
+            ];
+            daily_notes = {
+              folder = "Dailies";
+            };
+          };
+        };
+      };
 
       options = {
+        conceallevel = 2;
         tabstop = 2;
         shiftwidth = 2;
         wrap = false;
@@ -159,8 +160,10 @@
         nvimBufferline.enable = true;
       };
 
-      treesitter.context.enable = true;
-
+      treesitter = {
+        fold = false;
+        context.enable = true;
+      };
       binds = {
         whichKey.enable = true;
         cheatsheet.enable = true;
