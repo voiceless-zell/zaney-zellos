@@ -21,7 +21,7 @@
     ...
   } @ inputs: let
     system = "x86_64-linux";
-    host = "G14";
+    host = "P16";
     profile = "nvidia-laptop";
     username = "zell";
     pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
