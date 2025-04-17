@@ -16,6 +16,7 @@
       wine
       plasma5Packages.plasma-thunderbolt
       openra
+      libreoffice
     ])
     ++ (with pkgs-unstable; [
       inputs.nix-citizen.packages.${system}.star-citizen-helper

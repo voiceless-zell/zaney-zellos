@@ -1,17 +1,17 @@
-{ host,
+{
+  host,
   username,
   config,
-  ... 
-}:
-let
-  inherit (import ../../../hosts/${host}/variables.nix)
+  ...
+}: let
+  inherit
+    (import ../../../hosts/${host}/variables.nix)
     browser
     terminal
     extraMonitorSettings
     keyboardLayout
     ;
-in
-{
+in {
   wayland.windowManager.hyprland = {
     settings = {
       exec-once = [
@@ -23,6 +23,7 @@ in
         "nm-applet --indicator"
         "lxqt-policykit-agent"
         "sleep 1.5 && swww img /home/${username}/Pictures/Wallpapers/zaney-wallpaper.jpg"
+        "uwsm app -- systemctl start --user hyprpaper"
       ];
 
       input = {
