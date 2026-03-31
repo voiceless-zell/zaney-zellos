@@ -132,8 +132,8 @@ nix-shell -p git vim
 Clone this repo & enter it:
 
 ```
-git clone https://gitlab.com/zaney/zaneyos.git
-cd zaneyos
+git clone https://github.com/voiceless-zell/zaney-zellos.git
+cd zaney-zellos
 ```
 
 - _You should stay in this folder for the rest of the install_
@@ -146,14 +146,13 @@ cp -r hosts/default hosts/<your-desired-hostname>
 
 **🪧🪧🪧 Edit `hosts/<your-desired-hostname>/variables.nix` 🪧🪧🪧**
 
-Generate your hardware.nix like so:
+Each host now declares its own hardware profile inside `hosts/<your-desired-hostname>/variables.nix`:
 
-```
-nixos-generate-config --show-hardware-config > hosts/<your-desired-hostname>/hardware.nix
+```nix
+profile = "intel";
 ```
 
-Run this to enable flakes and install the flake replacing `profile` with any of
-these options:
+Valid profiles are:
 
 - amd
 - nvidia
@@ -161,12 +160,35 @@ these options:
 - intel
 - vm
 
+Generate or refresh your `hardware.nix` like so:
+
 ```
-NIX_CONFIG="experimental-features = nix-command flakes" 
-sudo nixos-rebuild switch --flake .#profile
+sudo nixos-generate-config --show-hardware-config > hosts/<your-desired-hostname>/hardware.nix
 ```
 
+Then build by **host name**, not profile:
+
+```
+NIX_CONFIG="experimental-features = nix-command flakes" \
+sudo nixos-rebuild switch --flake .#<your-desired-hostname>
+```
+
+#### 🔁 Rebuild from an existing local checkout
+
+If the repo is already on the machine, you do **not** need to clone it again.
+
+Example for `P16`:
+
+```
+cd ~/zaney-zellos
+sudo nixos-generate-config --show-hardware-config > hosts/P16/hardware.nix
+NIX_CONFIG="experimental-features = nix-command flakes" \
+sudo nixos-rebuild switch --flake .#P16
+```
+
+The install script keeps overwriting `hosts/<host>/hardware.nix` for the selected host, so hardware data stays host-specific.
+
 Now when you want to rebuild the configuration you have access to an alias `fr`
-that will rebuild the flake!
+that rebuilds the current host's flake.
 
 Hope you enjoy!
