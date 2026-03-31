@@ -73,6 +73,18 @@ echo "Cloning & Entering Zaney-zellos Repository"
 git clone https://github.com/voiceless-zell/zaney-zellos.git
 cd zaney-zellos || exit
 
+set_nix_attr() {
+  local file="$1"
+  local attr="$2"
+  local value="$3"
+
+  if grep -qE "^[[:space:]]*${attr}[[:space:]]*=" "$file"; then
+    sed -i "s|^[[:space:]]*${attr}[[:space:]]*=.*|  ${attr} = \"${value}\";|" "$file"
+  else
+    sed -i "1a\\  ${attr} = \"${value}\";\n" "$file"
+  fi
+}
+
 if [ -d "hosts/$hostName" ]; then
   echo "Existing host '$hostName' found. Preserving host-specific files and refreshing hardware.nix only."
   reuse_existing_host="yes"
@@ -89,8 +101,7 @@ git config --global user.email "$installusername@gmail.com"
 git add .
 git config --global --unset-all user.name
 git config --global --unset-all user.email
-sed -i "/^\s*host[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$hostName\"/" ./flake.nix
-sed -i "/^\s*profile[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$profile\"/" ./flake.nix
+set_nix_attr "./hosts/$hostName/variables.nix" "profile" "$profile"
 
 if [ "$reuse_existing_host" = "no" ]; then
   read -rp "Enter your keyboard layout: [ us ] " keyboardLayout
@@ -98,7 +109,7 @@ if [ "$reuse_existing_host" = "no" ]; then
     keyboardLayout="us"
   fi
 
-  sed -i "/^\s*keyboardLayout[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$keyboardLayout\"/" ./hosts/$hostName/variables.nix
+  set_nix_attr "./hosts/$hostName/variables.nix" "keyboardLayout" "$keyboardLayout"
 
   echo "-----"
 
@@ -107,7 +118,7 @@ if [ "$reuse_existing_host" = "no" ]; then
     consoleKeyMap="us"
   fi
 
-  sed -i "/^\s*consoleKeyMap[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$consoleKeyMap\"/" ./hosts/$hostName/variables.nix
+  set_nix_attr "./hosts/$hostName/variables.nix" "consoleKeyMap" "$consoleKeyMap"
 else
   echo "Keeping existing keyboard and console settings from ./hosts/$hostName/variables.nix"
 fi
@@ -128,4 +139,4 @@ NIX_CONFIG="experimental-features = nix-command flakes"
 
 echo "-----"
 
-sudo nixos-rebuild switch --flake ~/zaney-zellos/#${profile}
+sudo nixos-rebuild switch --flake ~/zaney-zellos/#${hostName}

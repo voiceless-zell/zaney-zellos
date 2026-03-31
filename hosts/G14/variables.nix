@@ -1,4 +1,6 @@
 {
+  profile = "amd";
+
   # Git Configuration ( For Pulling Software Repos )
   gitUsername = "voiceless-zell";
   gitEmail = "peter.bouchard2893@proton.me";

@@ -21,67 +21,27 @@
     ...
   } @ inputs: let
     system = "x86_64-linux";
-    host = "P16";
-    profile = "nvidia-laptop";
     username = "zell";
     pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
+    lib = nixpkgs.lib;
+
+    hostNames = lib.attrNames (lib.filterAttrs (_: type: type == "directory") (builtins.readDir ./hosts));
+
+    mkHost = host: let
+      inherit (import ./hosts/${host}/variables.nix) profile;
+    in
+      nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs = {
+          inherit inputs;
+          inherit username;
+          inherit host;
+          inherit profile;
+          inherit pkgs-unstable;
+        };
+        modules = [./profiles/${profile}];
+      };
   in {
-    nixosConfigurations = {
-      amd = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {
-          inherit inputs;
-          inherit username;
-          inherit host;
-          inherit profile;
-          inherit pkgs-unstable;
-        };
-        modules = [./profiles/amd];
-      };
-      nvidia = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {
-          inherit inputs;
-          inherit username;
-          inherit host;
-          inherit profile;
-          inherit pkgs-unstable;
-        };
-        modules = [./profiles/nvidia];
-      };
-      nvidia-laptop = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {
-          inherit inputs;
-          inherit username;
-          inherit host;
-          inherit profile;
-          inherit pkgs-unstable;
-        };
-        modules = [./profiles/nvidia-laptop];
-      };
-      intel = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {
-          inherit inputs;
-          inherit username;
-          inherit host;
-          inherit profile;
-          inherit pkgs-unstable;
-        };
-        modules = [./profiles/intel];
-      };
-      vm = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {
-          inherit inputs;
-          inherit username;
-          inherit host;
-          inherit profile;
-          inherit pkgs-unstable;
-        };
-        modules = [./profiles/vm];
-      };
-    };
+    nixosConfigurations = lib.genAttrs hostNames mkHost;
   };
 }

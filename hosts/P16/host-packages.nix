@@ -19,8 +19,8 @@
       libreoffice
     ])
     ++ (with pkgs-unstable; [
-      inputs.nix-citizen.packages.${system}.star-citizen-helper
-      inputs.nix-citizen.packages.${system}.lug-helper
+      inputs.nix-citizen.packages.${pkgs.system}.star-citizen-helper
+      inputs.nix-citizen.packages.${pkgs.system}.lug-helper
     ]);
   nixpkgs.config.permittedInsecurePackages = [
     "dotnet-sdk-6.0.428"

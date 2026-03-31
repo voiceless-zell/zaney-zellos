@@ -1,4 +1,4 @@
-{profile, ...}: {
+{host, ...}: {
   programs.zsh = {
     enable = true;
     autosuggestion.enable = true;
@@ -16,8 +16,8 @@
       sv = "sudo nvim";
       v = "nvim";
       c = "clear";
-      fr = "nh os switch --hostname ${profile}";
-      fu = "nh os switch --hostname ${profile} --update";
+      fr = "nh os switch --hostname ${host}";
+      fu = "nh os switch --hostname ${host} --update";
       fl = "cd ~/zaney-zellos/ && v";
       zu = "sh <(curl -L https://gitlab.com/Zaney/zaneyos/-/raw/main/install-zaneyos.sh)";
       ncg = "nix-collect-garbage --delete-old && sudo nix-collect-garbage -d && sudo /run/current-system/bin/switch-to-configuration boot";
