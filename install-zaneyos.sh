@@ -72,9 +72,18 @@ echo "-----"
 echo "Cloning & Entering Zaney-zellos Repository"
 git clone https://github.com/voiceless-zell/zaney-zellos.git
 cd zaney-zellos || exit
-mkdir hosts/"$hostName"
-cp hosts/default/*.nix hosts/"$hostName"
-installusername=$(echo $USER)
+
+if [ -d "hosts/$hostName" ]; then
+  echo "Existing host '$hostName' found. Preserving host-specific files and refreshing hardware.nix only."
+  reuse_existing_host="yes"
+else
+  echo "Creating new host from hosts/default template."
+  mkdir -p "hosts/$hostName"
+  cp hosts/default/*.nix "hosts/$hostName"
+  reuse_existing_host="no"
+fi
+
+installusername=$(echo "$USER")
 git config --global user.name "$installusername"
 git config --global user.email "$installusername@gmail.com"
 git add .
@@ -83,22 +92,25 @@ git config --global --unset-all user.email
 sed -i "/^\s*host[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$hostName\"/" ./flake.nix
 sed -i "/^\s*profile[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$profile\"/" ./flake.nix
 
+if [ "$reuse_existing_host" = "no" ]; then
+  read -rp "Enter your keyboard layout: [ us ] " keyboardLayout
+  if [ -z "$keyboardLayout" ]; then
+    keyboardLayout="us"
+  fi
 
-read -rp "Enter your keyboard layout: [ us ] " keyboardLayout
-if [ -z "$keyboardLayout" ]; then
-  keyboardLayout="us"
+  sed -i "/^\s*keyboardLayout[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$keyboardLayout\"/" ./hosts/$hostName/variables.nix
+
+  echo "-----"
+
+  read -rp "Enter your console keymap: [ us ] " consoleKeyMap
+  if [ -z "$consoleKeyMap" ]; then
+    consoleKeyMap="us"
+  fi
+
+  sed -i "/^\s*consoleKeyMap[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$consoleKeyMap\"/" ./hosts/$hostName/variables.nix
+else
+  echo "Keeping existing keyboard and console settings from ./hosts/$hostName/variables.nix"
 fi
-
-sed -i "/^\s*keyboardLayout[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$keyboardLayout\"/" ./hosts/$hostName/variables.nix
-
-echo "-----"
-
-read -rp "Enter your console keymap: [ us ] " consoleKeyMap
-if [ -z "$consoleKeyMap" ]; then
-  consoleKeyMap="us"
-fi
-
-sed -i "/^\s*consoleKeyMap[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$consoleKeyMap\"/" ./hosts/$hostName/variables.nix
 
 echo "-----"
 
