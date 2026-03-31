@@ -6,7 +6,6 @@
       noto-fonts-emoji
       noto-fonts-cjk-sans
       font-awesome
-      symbola
       material-icons
     ];
   };
