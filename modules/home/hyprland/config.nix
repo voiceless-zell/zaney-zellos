@@ -24,6 +24,7 @@ in {
         "lxqt-policykit-agent"
         "sleep 1.5 && swww img /home/${username}/Pictures/Wallpapers/zaney-wallpaper.jpg"
         "uwsm app -- systemctl start --user hyprpaper"
+        "sh -lc 'sleep 4; hyprctl reload'"
       ];
 
       input = {
@@ -266,6 +267,7 @@ in {
     };
 
     extraConfig = "
+      monitor=,preferred,auto,auto
       ${extraMonitorSettings}
     ";
   };
