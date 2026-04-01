@@ -14,7 +14,7 @@
 
     thunar = {
       enable = true;
-      plugins = with pkgs.xfce; [
+      plugins = with pkgs; [
         thunar-archive-plugin
         thunar-volman
       ];
@@ -53,7 +53,7 @@
     mpv
     ncdu
     ninja
-    nixfmt-rfc-style
+    nixfmt
     pavucontrol
     pciutils
     picard
