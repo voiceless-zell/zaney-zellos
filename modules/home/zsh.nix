@@ -5,7 +5,7 @@
     syntaxHighlighting.enable = true;
     enableCompletion = true;
 
-    initExtra = ''
+    initContent = ''
       bindkey "^H" backward-word
       bindkey "^J" down-line-or-history
       bindkey "^K" up-line-or-history

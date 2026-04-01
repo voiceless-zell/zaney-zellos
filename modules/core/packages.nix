@@ -37,7 +37,7 @@
     file-roller
     gedit
     gimp
-    greetd.tuigreet
+    tuigreet
     htop
     hyprpicker
     imv
