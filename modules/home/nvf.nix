@@ -1,6 +1,7 @@
 {
   inputs,
   config,
+  lib,
   ...
 }: {
   imports = [inputs.nvf.homeManagerModules.default];
@@ -96,7 +97,7 @@
 
       theme = {
         enable = true;
-        name = "dracula";
+        name = lib.mkForce "dracula";
         style = "dark";
         transparent = true;
       };
