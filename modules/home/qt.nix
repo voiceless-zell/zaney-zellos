@@ -3,7 +3,7 @@
 {
   qt = {
     enable = true;
-    style.name = "adwaita-dark";
+    style.name = lib.mkForce "adwaita-dark";
     platformTheme.name = lib.mkForce "gtk3";
   };
 }
