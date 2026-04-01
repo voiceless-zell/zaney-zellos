@@ -2,7 +2,7 @@
   programs.bash = {
     enable = false;
     enableCompletion = true;
-    initContent = ''
+    initExtra = ''
       fastfetch
       if [ -f $HOME/.bashrc-personal ]; then
         source $HOME/.bashrc-personal
