@@ -24,7 +24,7 @@ in {
         "lxqt-policykit-agent"
         "sleep 1.5 && swww img /home/${username}/Pictures/Wallpapers/zaney-wallpaper.jpg"
         "uwsm app -- systemctl start --user hyprpaper"
-        "sh -lc 'sleep 10; hyprctl reload'"
+        "sh -lc 'sleep 6; hyprctl keyword monitor DP-4,1920x1080@60,-1080x0,1,transform,3; sleep 1; hyprctl keyword monitor HDMI-A-1,1920x1080@60,-3000x0,1; sleep 1; hyprctl keyword monitor DP-3,1920x1080@60,-4920x0,1'"
       ];
 
       input = {
