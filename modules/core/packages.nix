@@ -61,6 +61,7 @@
     playerctl
     ripgrep
     socat
+    telegram-desktop
     unrar
     unzip
     usbutils

@@ -13,22 +13,22 @@
       viAlias = true;
       withNodeJs = true;
 
-      notes = {
-        obsidian = {
-          enable = true;
-          setupOpts = {
-            workspaces = [
-              {
-                name = "vimvault";
-                path = "~/vimvault/";
-              }
-            ];
-            daily_notes = {
-              folder = "Dailies";
-            };
-          };
-        };
-      };
+      #      notes = {
+      #        obsidian = {
+      #          enable = true;
+      #          setupOpts = {
+      #            workspaces = [
+      #              {
+      #                name = "vimvault";
+      #                path = "~/vimvault/";
+      #              }
+      #            ];
+      #            daily_notes = {
+      #              folder = "Dailies";
+      #            };
+      #          };
+      #       };
+      #      };
 
       options = {
         conceallevel = 2;
