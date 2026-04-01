@@ -8,20 +8,29 @@ pkgs.writeShellScriptBin "fix-monitors" ''
     fi
   }
 
+  hypr() {
+    ${pkgs.hyprland}/bin/hyprctl keyword monitor "$1" || true
+  }
+
   notify "Reapplying dock monitor layout..."
 
-  ${pkgs.hyprland}/bin/hyprctl keyword monitor "HDMI-A-1,1920x1080@60,-3000x0,1" || true
+  hypr "HDMI-A-1,1920x1080@60,-3000x0,1"
   sleep 1
 
-  ${pkgs.hyprland}/bin/hyprctl keyword monitor "DP-4,disable" || true
+  hypr "DP-4,disable"
   sleep 2
-  ${pkgs.hyprland}/bin/hyprctl keyword monitor "DP-4,1920x1080@60,-1080x0,1,transform,3" || true
-  sleep 2
+  hypr "DP-4,1920x1080@60,-1080x0,1,transform,3"
+  sleep 3
 
-  ${pkgs.hyprland}/bin/hyprctl keyword monitor "DP-3,disable" || true
+  notify "Giving DP-3 extra persuasion..."
+  hypr "DP-3,disable"
+  sleep 3
+  hypr "DP-3,1920x1080@60,-4920x0,1"
+  sleep 4
+  hypr "DP-3,disable"
   sleep 2
-  ${pkgs.hyprland}/bin/hyprctl keyword monitor "DP-3,1920x1080@60,-4920x0,1" || true
-  sleep 2
+  hypr "DP-3,1920x1080@60,-4920x0,1"
+  sleep 5
 
   notify "Monitor recovery pass complete."
 ''
