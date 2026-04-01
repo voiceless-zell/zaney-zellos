@@ -18,10 +18,9 @@
       openra
       libreoffice
     ])
-    ++ (with pkgs-unstable; [
-      inputs.nix-citizen.packages.${pkgs.system}.star-citizen-helper
-      inputs.nix-citizen.packages.${pkgs.system}.lug-helper
-    ]);
+    ++ [
+      inputs.nix-citizen.packages.${pkgs.stdenv.hostPlatform.system}.lug-helper
+    ];
   nixpkgs.config.permittedInsecurePackages = [
     "dotnet-sdk-6.0.428"
     "dotnet-runtime-6.0.36"
