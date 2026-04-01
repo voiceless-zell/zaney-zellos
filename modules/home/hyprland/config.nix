@@ -109,6 +109,7 @@ in {
         "$modifier SHIFT,W,exec,web-search"
         "$modifier ALT,W,exec,wallsetter"
         "$modifier SHIFT,N,exec,swaync-client -rs"
+        "$modifier SHIFT,M,exec,fix-monitors"
         "$modifier,W,exec,${browser}"
         "$modifier,E,exec,emopicker9000"
         "$modifier,S,exec,screenshootin"
