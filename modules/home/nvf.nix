@@ -99,7 +99,7 @@
         enable = true;
         name = lib.mkForce "dracula";
         style = "dark";
-        transparent = true;
+        transparent = lib.mkForce true;
       };
 
       telescope.enable = true;
