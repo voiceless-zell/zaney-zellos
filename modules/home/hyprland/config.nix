@@ -14,6 +14,8 @@
 in {
   wayland.windowManager.hyprland = {
     settings = {
+      "$modifier" = "SUPER";
+
       exec-once = [
         "dbus-update-activation-environment --all --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
         "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
@@ -45,7 +47,6 @@ in {
       };
 
       general = {
-        "$modifier" = "SUPER";
         layout = "dwindle";
         gaps_in = 6;
         gaps_out = 8;
@@ -166,24 +167,24 @@ in {
         "$modifier SHIFT,0,movetoworkspace,10"
         "$modifier CONTROL,right,workspace,e+1"
         "$modifier CONTROL,left,workspace,e-1"
-        "$modifier,mouse_down,workspace, e+1"
-        "$modifier,mouse_up,workspace, e-1"
+        "$modifier,mouse_down,workspace,e+1"
+        "$modifier,mouse_up,workspace,e-1"
         "ALT,Tab,cyclenext"
         "ALT,Tab,bringactivetotop"
         ",XF86AudioRaiseVolume,exec,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
         ",XF86AudioLowerVolume,exec,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-        " ,XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-        ",XF86AudioPlay, exec, playerctl play-pause"
-        ",XF86AudioPause, exec, playerctl play-pause"
-        ",XF86AudioNext, exec, playerctl next"
-        ",XF86AudioPrev, exec, playerctl previous"
+        ",XF86AudioMute,exec,wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        ",XF86AudioPlay,exec,playerctl play-pause"
+        ",XF86AudioPause,exec,playerctl play-pause"
+        ",XF86AudioNext,exec,playerctl next"
+        ",XF86AudioPrev,exec,playerctl previous"
         ",XF86MonBrightnessDown,exec,brightnessctl set 5%-"
         ",XF86MonBrightnessUp,exec,brightnessctl set +5%"
       ];
 
       bindm = [
-        "$modifier, mouse:272, movewindow"
-        "$modifier, mouse:273, resizewindow"
+        "$modifier,mouse:272,movewindow"
+        "$modifier,mouse:273,resizewindow"
       ];
 
       windowrulev2 = [
