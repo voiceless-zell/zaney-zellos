@@ -25,7 +25,6 @@ in {
     };
     greetd = {
       enable = true;
-      vt = 3;
       settings = {
         default_session = {
           user = username;

@@ -1,8 +1,9 @@
-{...}: {
+{ pkgs, ... }:
+{
   services = {
     ollama = {
       enable = true;
-      acceleration = "cuda";
+      package = pkgs.ollama-cuda;
     };
     nextjs-ollama-llm-ui = {
       enable = true;
