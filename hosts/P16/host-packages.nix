@@ -14,7 +14,7 @@
       obs-studio
       obsidian
       wine
-      plasma5Packages.plasma-thunderbolt
+      kdePackages.plasma-thunderbolt
       openra
       libreoffice
     ])
