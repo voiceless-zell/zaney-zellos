@@ -4,7 +4,7 @@
     substituters = ["https://nix-citizen.cachix.org"];
     trusted-public-keys = ["nix-citizen.cachix.org-1:lPMkWc2X8XD4/7YPEEwXKKBg+SVbYTVrAaLA2wQTKCo="];
   };
-  nix-citizen.starCitizen = {
+  programs.rsi-launcher = {
     # Enables the star citizen module
     enable = true;
     # Additional commands before the game starts
@@ -13,7 +13,6 @@
       export MANGO_HUD=1;
     '';
     # Experimental script
-    helperScript.enable = true;
 
     # # This option is enabled by default
     # #  Configures your system to meet some of the requirements to run star-citizen

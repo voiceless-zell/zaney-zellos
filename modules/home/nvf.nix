@@ -108,6 +108,7 @@
       };
 
       lsp = {
+        enable = true;
         formatOnSave = true;
         lspkind.enable = false;
         lightbulb.enable = true;
@@ -119,7 +120,6 @@
       };
 
       languages = {
-        enableLSP = true;
         enableFormat = true;
         enableTreesitter = true;
         enableExtraDiagnostics = true;
@@ -129,7 +129,7 @@
         zig.enable = true;
         python.enable = true;
         markdown.enable = true;
-        ts.enable = true;
+        # ts.enable = true;
         html.enable = true;
       };
 
