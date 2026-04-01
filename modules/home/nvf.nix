@@ -95,12 +95,6 @@
         }
       ];
 
-      theme = {
-        enable = true;
-        name = lib.mkForce "dracula";
-        style = "dark";
-        transparent = lib.mkForce true;
-      };
 
       telescope.enable = true;
 
@@ -147,7 +141,6 @@
       statusline = {
         lualine = {
           enable = true;
-          theme = "dracula";
         };
       };
 
