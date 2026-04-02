@@ -24,6 +24,7 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
+    transmission_4-gtk
     android-tools
     appimage-run
     brave
