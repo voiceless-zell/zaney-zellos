@@ -51,7 +51,7 @@
     lshw
     lxqt.lxqt-policykit
     meson
-    mpv
+    vlc
     ncdu
     ninja
     nixfmt
