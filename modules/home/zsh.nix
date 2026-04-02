@@ -10,6 +10,10 @@
       bindkey "^J" down-line-or-history
       bindkey "^K" up-line-or-history
       bindkey "^L" forward-word
+
+      cowsay() {
+        command cowsay "$@" | sed $'s/^/\x1b[32m/; s/$/\x1b[0m/'
+      }
     '';
 
     shellAliases = {
