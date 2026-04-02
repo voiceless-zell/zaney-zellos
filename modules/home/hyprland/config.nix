@@ -187,7 +187,7 @@ in {
         "$modifier,mouse:273,resizewindow"
       ];
 
-      windowrulev2 = [
+      windowrule = [
         "tag +file-manager, class:^([Tt]hunar|org.gnome.Nautilus|[Pp]cmanfm-qt)$"
         "tag +terminal, class:^(Alacritty|kitty|kitty-dropterm)$"
         "tag +browser, class:^(Brave-browser(-beta|-dev|-unstable)?)$"
