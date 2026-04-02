@@ -35,7 +35,7 @@
     duf
     eza
     ffmpeg
-    file-roller
+    #file-roller
     gedit
     gimp
     tuigreet
