@@ -4,7 +4,7 @@
   lib,
   ...
 }: {
-  imports = [inputs.nvf.homeManagerModules.default];
+  imports = [inputs.nvf.homeManagerModules.nvf];
 
   programs.nvf = {
     enable = true;

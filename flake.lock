@@ -559,7 +559,9 @@
         "flake-parts": "flake-parts_3",
         "mnw": "mnw",
         "ndg": "ndg",
-        "nixpkgs": "nixpkgs_4",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
         "systems": "systems_2"
       },
       "locked": {
@@ -579,8 +581,6 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
-        "nix-citizen": "nix-citizen",
-        "nix-gaming": "nix-gaming",
         "nixpkgs": "nixpkgs_3",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nvf": "nvf",

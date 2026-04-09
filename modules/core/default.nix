@@ -15,6 +15,5 @@
     ./virtualisation.nix
     ./xdg.nix
     inputs.stylix.nixosModules.stylix
-    inputs.nix-citizen.nixosModules.StarCitizen
   ];
 }

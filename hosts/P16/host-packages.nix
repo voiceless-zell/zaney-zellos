@@ -17,10 +17,7 @@
       kdePackages.plasma-thunderbolt
       openra
       libreoffice
-    ])
-    ++ [
-      inputs.nix-citizen.packages.${pkgs.stdenv.hostPlatform.system}.lug-helper
-    ];
+    ]);
   nixpkgs.config.permittedInsecurePackages = [
     "dotnet-sdk-6.0.428"
     "dotnet-runtime-6.0.36"
