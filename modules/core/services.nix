@@ -6,6 +6,11 @@
 }: let
   inherit (import ../../hosts/${host}/variables.nix) keyboardLayout;
 in {
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
+
   # Services to start
   services = {
     libinput.enable = true;
@@ -79,7 +84,7 @@ in {
   security.polkit.extraConfig = ''
     polkit.addRule(function(action, subject) {
       if (
-        subject.isInGroup("users")
+        subject.isInGroup("wheel")
           && (
             action.id == "org.freedesktop.login1.reboot" ||
             action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
@@ -92,9 +97,5 @@ in {
       }
     })
   '';
-  security.pam.services.swaylock = {
-    text = ''
-      auth include login
-    '';
-  };
+  security.pam.services.hyprlock = {};
 }

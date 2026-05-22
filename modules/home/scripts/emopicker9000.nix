@@ -16,7 +16,7 @@ pkgs.writeShellScriptBin "emopicker9000" ''
   if [ -n "$1" ]; then
    ${pkgs.ydotool}/bin/ydotool type "$chosen"
   else
-      printf "$chosen" | ${pkgs.wl-clipboard}/bin/wl-copy
+      printf '%s' "$chosen" | ${pkgs.wl-clipboard}/bin/wl-copy
    ${pkgs.libnotify}/bin/notify-send "'$chosen' copied to clipboard." &
   fi
 ''

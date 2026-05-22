@@ -11,18 +11,15 @@
       url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    stylix.url = "github:danth/stylix";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = {
-    nixpkgs,
-    nixpkgs-unstable,
-    ...
-  } @ inputs: let
+  outputs = {nixpkgs, ...} @ inputs: let
     system = "x86_64-linux";
     username = "zell";
-    pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
     lib = nixpkgs.lib;
 
     hostNames = lib.attrNames (lib.filterAttrs (_: type: type == "directory") (builtins.readDir ./hosts));
@@ -37,7 +34,6 @@
           inherit username;
           inherit host;
           inherit profile;
-          inherit pkgs-unstable;
         };
         modules = [./profiles/${profile}];
       };

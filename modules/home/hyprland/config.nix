@@ -1,6 +1,5 @@
 {
   host,
-  username,
   config,
   ...
 }: let
@@ -24,7 +23,7 @@ in {
         "killall -q swaync;sleep .5 && swaync"
         "nm-applet --indicator"
         "lxqt-policykit-agent"
-        "sleep 1.5 && swww img /home/${username}/Pictures/Wallpapers/zaney-wallpaper.jpg"
+        "sleep 1.5 && swww img ${config.home.homeDirectory}/Pictures/Wallpapers/zaney-wallpaper.jpg"
         "uwsm app -- systemctl start --user hyprpaper"
         "sh -lc 'sleep 6; hyprctl keyword monitor DP-4,1920x1080@60,-1080x0,1,transform,3; sleep 1; hyprctl keyword monitor HDMI-A-1,1920x1080@60,-3000x0,1; sleep 1; hyprctl keyword monitor DP-3,1920x1080@60,-4920x0,1'"
       ];
@@ -56,12 +55,7 @@ in {
         "col.inactive_border" = "rgb(${config.lib.stylix.colors.base01})";
       };
 
-      misc = {
-        layers_hog_keyboard_focus = true;
-        initial_workspace_tracking = 0;
-        mouse_move_enables_dpms = true;
-        key_press_enables_dpms = false;
-      };
+      misc = {};
 
       dwindle = {
         pseudotile = true;
@@ -75,7 +69,6 @@ in {
           size = 5;
           passes = 3;
           ignore_opacity = false;
-          new_optimizations = true;
         };
         shadow = {
           enabled = true;
@@ -243,7 +236,7 @@ in {
         "XDG_SESSION_DESKTOP, Hyprland"
         "GDK_BACKEND, wayland, x11"
         "CLUTTER_BACKEND, wayland"
-        "QT_QPA_PLATFORM=wayland;xcb"
+        "QT_QPA_PLATFORM, wayland;xcb"
         "QT_WAYLAND_DISABLE_WINDOWDECORATION, 1"
         "QT_AUTO_SCREEN_SCALE_FACTOR, 1"
         "SDL_VIDEODRIVER, x11"

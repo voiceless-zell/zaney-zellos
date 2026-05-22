@@ -12,15 +12,11 @@ in {
   };
 
   config = mkIf cfg.enable {
-    nixpkgs.config.packageOverrides = pkgs: {
-      vaapiIntel = pkgs.vaapiIntel.override {enableHybridCodec = true;};
-    };
-
-    # OpenGL
+    # Intel VA-API / VDPAU support for current nixos-unstable.
     hardware.graphics = {
       extraPackages = with pkgs; [
         intel-media-driver
-        vaapiIntel
+        intel-vaapi-driver
         vaapiVdpau
         libvdpau-va-gl
       ];

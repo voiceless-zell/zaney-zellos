@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{pkgs, ...}:
 
 {
   gtk = {
@@ -10,7 +10,6 @@
       gtk-application-prefer-dark-theme = 1;
     };
     gtk4 = {
-      theme = config.gtk.theme;
       extraConfig = {
         gtk-application-prefer-dark-theme = 1;
       };
