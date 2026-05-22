@@ -1,5 +1,5 @@
 {
-  profile = "amd";
+  profile = "asus-g14";
 
   # Git Configuration ( For Pulling Software Repos )
   gitUsername = "voiceless-zell";
