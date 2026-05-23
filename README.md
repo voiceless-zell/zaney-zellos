@@ -109,7 +109,7 @@ install extra packages. It is simply here so you can get my configuration
 installed with as little chances of breakages and then fiddle to your hearts
 content!
 
-Simply copy this and run it:
+From an existing NixOS system, or from the official NixOS live ISO after partitioning/formatting and mounting the target root at `/mnt`, run:
 
 ```
 nix-shell -p git curl
@@ -118,8 +118,15 @@ nix-shell -p git curl
 Then:
 
 ```
-sh <(curl -L https://raw.githubusercontent.com/voiceless-zell/zaney-zellos/refs/heads/master/install-zaneyos.sh)
+bash <(curl -L https://raw.githubusercontent.com/voiceless-zell/zaney-zellos/refs/heads/master/install-zaneyos.sh)
 ```
+
+The script auto-selects:
+
+- `install` mode when `/mnt` is mounted, using `nixos-install --flake .#<host>`
+- `switch` mode otherwise, using `nixos-rebuild switch --flake .#<host>`
+
+The script does **not** partition, format, or mount disks. Do that dangerous goblin work manually first, then let the script install the flake.
 
 #### 🦽 Manual:
 
