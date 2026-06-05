@@ -162,6 +162,7 @@ profile = "intel";
 Valid profiles are:
 
 - amd
+- asus-g14
 - nvidia
 - nvidia-laptop
 - intel
