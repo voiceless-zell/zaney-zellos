@@ -13,9 +13,6 @@
     swappy
     ydotool
   ];
-  systemd.user.targets.hyprland-session.Unit.Wants = [
-    "xdg-desktop-autostart.target"
-  ];
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland = {
@@ -23,7 +20,10 @@
       # hidpi = true;
     };
     # enableNvidiaPatches = false;
-    systemd.enable = true;
+    systemd = {
+      enable = true;
+      enableXdgAutostart = true;
+    };
   };
   # Place Files Inside Home Directory
   home.file."Pictures/Wallpapers" = {

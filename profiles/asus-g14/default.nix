@@ -1,5 +1,10 @@
-{host, ...}: {
+{
+  inputs,
+  host,
+  ...
+}: {
   imports = [
+    inputs.nixos-hardware.nixosModules.asus-zephyrus-ga401iv
     ../../hosts/${host}
     ../../modules/drivers
     ../../modules/core
